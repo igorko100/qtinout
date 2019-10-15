@@ -7,3 +7,4 @@ SOURCES       = mainwindow.cpp \
 # install
 target.path = .
 INSTALLS += target
+DEFINES += QT_NO_OPENGL
