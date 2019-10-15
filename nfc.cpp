@@ -20,7 +20,7 @@ static void print_hex(const uint8_t *pbtData, const size_t szBytes)
 
   for (szPos = 0; szPos < szBytes; szPos++) {
 //    std::cerr << std::printf("%02x ", pbtData[szPos]);
-      std::cerr << hex << pbtData[szPos];
+      std::cerr << std::hex << pbtData[szPos];
   }
   std::cerr << std::endl;
 }
