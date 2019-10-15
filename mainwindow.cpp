@@ -51,6 +51,7 @@
 #include <QtWidgets>
 
 #include "mainwindow.h"
+#include "nfc.h"
 
 //! [0]
 MainWindow::MainWindow()
@@ -88,6 +89,7 @@ MainWindow::MainWindow()
     setWindowTitle(tr("Menus"));
     setMinimumSize(160, 160);
     resize(480, 320);
+    Controller *c = new Controller;
 }
 //! [2]
 
