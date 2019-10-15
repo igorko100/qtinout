@@ -20,13 +20,13 @@ print_hex(const uint8_t *pbtData, const size_t szBytes)
   size_t  szPos;
 
   for (szPos = 0; szPos < szBytes; szPos++) {
-    std::cout << std::printf("%02x ", pbtData[szPos]);
+    std::cerr << std::printf("%02x ", pbtData[szPos]);
   }
-  std::cout << std::endl;
+  std::cerr << std::endl;
 }
 
 void Controller::handleResults(const QString &) {
-    std::cout << "... Here we will handle reading of a card ..." << std::endl;
+    std::cerr << "... Here we will handle reading of a card ..." << std::endl;
 }
 
 
@@ -53,7 +53,7 @@ void Worker::doWork(const QString &parameter) {
 
     // Display libnfc version
     const char *acLibnfcVersion = nfc_version();
-    std::cout << "Using libnfc" << acLibnfcVersion << std::endl;
+    std::cerr << "Using libnfc" << acLibnfcVersion << std::endl;
 
     // Open, using the first available NFC device which can be in order of selection:
     //   - default device specified using environment variable or
@@ -72,7 +72,7 @@ void Worker::doWork(const QString &parameter) {
       return; // EXIT ?
     }
 
-//    std::cout << "NFC reader:" << nfc_device_get_name(pnd) << " opened" << std::endl;
+//    std::cerr << "NFC reader:" << nfc_device_get_name(pnd) << " opened" << std::endl;
     std::cerr << "NFC reader:" << nfc_device_get_name(pnd) << " opened" << std::endl;
 
 
@@ -82,8 +82,8 @@ void Worker::doWork(const QString &parameter) {
       .nbr = NBR_106,
     };
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
-      std::cout << "The following (NFC) ISO14443A tag was found:" << std::endl;
-      std::cout << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
+      std::cerr << "The following (NFC) ISO14443A tag was found:" << std::endl;
+      std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
       print_hex(nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
     }
     // Close NFC device
