@@ -14,13 +14,13 @@ Controller::Controller() {
 
 
 
-static void
-print_hex(const uint8_t *pbtData, const size_t szBytes)
+static void print_hex(const uint8_t *pbtData, const size_t szBytes)
 {
   size_t  szPos;
 
   for (szPos = 0; szPos < szBytes; szPos++) {
-    std::cerr << std::printf("%02x ", pbtData[szPos]);
+//    std::cerr << std::printf("%02x ", pbtData[szPos]);
+      std::cerr << hex << pbtData[szPos];
   }
   std::cerr << std::endl;
 }
