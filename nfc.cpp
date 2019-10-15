@@ -26,7 +26,11 @@ print_hex(const uint8_t *pbtData, const size_t szBytes)
 }
 
 void Controller::handleResults(const QString &) {
-    std::cerr << "... Here we will handle reading of a card ..." << std::endl;
+    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
+
+    QThread::sleep(1); // Just wait for a second
+
+    emit operate(QString("Testing operate"));
 }
 
 
