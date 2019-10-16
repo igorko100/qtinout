@@ -66,7 +66,7 @@ void Worker::doWork(const QByteArray &parameter) {
     }
 
 //    std::cerr << "NFC reader:" << nfc_device_get_name(pnd) << " opened" << std::endl;
-    std::cerr << "NFC reader:" << nfc_device_get_name(pnd) << " opened" << std::endl;
+//    std::cerr << "NFC reader:" << nfc_device_get_name(pnd) << " opened" << std::endl;
 
 
     // Poll for a ISO14443A (MIFARE) tag
@@ -76,6 +76,7 @@ void Worker::doWork(const QByteArray &parameter) {
     };
 
 label:
+    std::cerr << "Wait for target..." << std::endl;
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << "UID (NFCID):";
