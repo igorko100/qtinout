@@ -3,6 +3,8 @@
 #include <QByteArray>
 #include <QString>
 #include <QProcess>
+#include <QApplication>
+
 
 Controller::Controller() {
 
@@ -24,10 +26,12 @@ void Controller::handleResults(const QByteArray &id) {
     QProcess process;
     if (prevState) {
         emit updateText("Welcome!");
+        QApplication::processEvents();
         process.start("aplay doorbell-shortened.wav");
     }
     else {
         emit updateText("Bye-bye!");
+        QApplication::processEvents();
         process.start("aplay skibka-music-logo-pn22.wav");
     }
     prevState = !prevState;
