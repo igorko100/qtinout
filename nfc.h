@@ -13,7 +13,7 @@ class Worker : public QObject
 {
     Q_OBJECT
 
-    int clearToRead;
+    int tooFast;
 
 public slots:
     void doWork(const QByteArray &parameter);

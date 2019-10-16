@@ -93,13 +93,15 @@ void Worker::doWork(const QByteArray &parameter) {
     if (elt.elapsed() > 250) {
         std::cerr << "elapsed time:" << elt.elapsed()<< std::endl;
         emit resultReady(result);
+    } else {
+        std::cerr << "Waiting for a second..." << std::endl;
+        QThread::sleep(1); // Just wait for a second
+        doWork(QByteArray("Testing operate"));
     }
+
     // Close NFC device
     nfc_close(pnd);
     // Release the context
     nfc_exit(context);
-
-    std::cerr << "Waiting for a second..." << std::endl;
-    QThread::sleep(1); // Just wait for a second
 }
 
