@@ -90,6 +90,7 @@ void Worker::doWork(const QByteArray &parameter) {
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
       do {
       //wait till the tag will be removed
+          nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt);
           tag = nfc_initiator_target_is_present(pnd, &nt);
           std::cerr << "\nIn while... " << tag << std::endl;
       } while (!tag);
