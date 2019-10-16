@@ -77,7 +77,7 @@ void Worker::doWork(const QByteArray &parameter) {
 
     QElapsedTimer elt;
 label:
-    std::cerr << "Wait for target..." << std::endl;
+    std::cerr << std::endl << "Wait for target..." << std::endl;
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << "UID (NFCID):";
