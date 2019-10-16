@@ -18,10 +18,10 @@ Controller::Controller() {
 void Controller::handleResults(const QByteArray &id) {
 //    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
 
-    if(previousTagID == id) {
+/*    if(previousTagID == id) {
         std::cout << "The same tag inserted!" << std::endl;
         return;
-    }
+    }*/
     previousTagID = id;
     QThread::sleep(1); // Just wait for a second
 
