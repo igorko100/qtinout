@@ -64,17 +64,12 @@ MainWindow::MainWindow()
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    infoLabel = new QLabel(tr("<i>Insert a card, please</i>"));
+    infoLabel = new QLabel();
     infoLabel->setFrameStyle(QFrame::NoFrame);
     infoLabel->setAlignment(Qt::AlignCenter);
 
-    //set font
-    labelFont = infoLabel->font();
-//    labelFont.setPointSize(24);
-//    labelFont.setBold(true);
 
-    infoLabel->setStyleSheet("QLabel { font-size: 24; font-weight: bold; color: grey; }");
-//    infoLabel->setFont(labelFont);
+    updateLabel(States::WAIT);
 
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -127,17 +122,17 @@ void MainWindow::updateLabel(States state) {
     switch (state) {
         case States::WELCOME:
 //            style = "QLabel { color : green; }";
-            style = "QLabel { font-size: 72; color: green; }";
+            style = "QLabel { font: 72pt; color: green; }";
             text = "Welcome!";
             break;
         case States::BYE:
 //            style = "QLabel { color : blue; }";
-            style = "QLabel { font-size: 72; color: blue; }";
+            style = "QLabel { font: 72pt; color: blue; }";
             text = "Bye-bye!";
             break;
         default:
-            style = "QLabel { font-size: 24; color: grey; }";
-            text = "Waiting for a card...";
+            style = "QLabel { font: 24pt; color: grey; }";
+            text = "W a i t i n g   f o r   a   c a r d . . .";
 //            labelFont.setPointSize(24);
 
     }
