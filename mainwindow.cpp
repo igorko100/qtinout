@@ -73,8 +73,14 @@ MainWindow::MainWindow()
     iconLabel->setFrameStyle(QFrame::NoFrame);
     iconLabel->setAlignment(Qt::AlignCenter);
 
+    logoLabel = new QLabel();
+    logoLabel->setAlignment(Qt::AlignRight);
+    logoLabel->setFrameStyle(QFrame::NoFrame);
 
-//    iconLabel->setPixmap(QPixmap("work.png"));
+
+//    logoLabel->setPixmap(QPixmap("Logo_CNI_ua.png"));
+    logoLabel->setPixmap(QPixmap("CNIua.png"));
+
 
     updateLabel(States::WAIT);
 
@@ -87,6 +93,7 @@ MainWindow::MainWindow()
     layout->addWidget(iconLabel);
     layout->addWidget(infoLabel);
     layout->addWidget(bottomFiller);
+    layout->addWidget(logoLabel);
     widget->setLayout(layout);
 //! [1]
 
@@ -94,10 +101,7 @@ MainWindow::MainWindow()
     createActions();
     createMenus();
 
-    QString message = tr("A context menu is available by right-clicking");
-    statusBar()->showMessage(message);
-
-    setWindowTitle(tr("Menus"));
+    setWindowTitle(tr("CNI inout"));
     setMinimumSize(160, 160);
     resize(480, 320);
     Controller *c = new Controller;
