@@ -18,14 +18,7 @@ Controller::Controller() {
 void Controller::handleResults(const QByteArray &id) {
 //    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
 
-    if(previousTagID == id) {
-        std::cout << "The same tag inserted!" << std::endl;
-        emit operate(QByteArray("Testing operate"));
-        return;
-    }
-    previousTagID = id;
-
-    QThread::sleep(1); // Just wait for a second
+//    QThread::sleep(1); // Just wait for a second
 
     emit operate(QByteArray("Testing operate"));
 }
@@ -89,6 +82,9 @@ void Worker::doWork(const QByteArray &parameter) {
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
     }
+    std::cerr << "Wait for target remove..." << std::endl;
+    while (0 == nfc_initiator_target_is_present(pnd, NULL)) {}
+
     // Close NFC device
     nfc_close(pnd);
     // Release the context
