@@ -15,9 +15,14 @@ Controller::Controller() {
 }
 
 
-void Controller::handleResults(const QByteArray &) {
+void Controller::handleResults(const QByteArray &id) {
 //    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
 
+    if(previousTagID == id) {
+        std::cout << "The same tag inserted!" << std::endl;
+        return;
+    }
+    previousTagID = id;
     QThread::sleep(1); // Just wait for a second
 
     emit operate(QByteArray("Testing operate"));

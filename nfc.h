@@ -24,6 +24,7 @@ class Controller : public QObject
 {
     Q_OBJECT
     QThread workerThread;
+    QByteArray previousTagID;
 public:
     Controller();
     ~Controller() {
