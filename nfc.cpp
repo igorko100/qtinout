@@ -75,6 +75,7 @@ void Worker::doWork(const QByteArray &parameter) {
       .nbr = NBR_106,
     };
 
+    QElapsedTimer elt;
 label:
     std::cerr << "Wait for target..." << std::endl;
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
@@ -83,7 +84,6 @@ label:
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
     }
     std::cerr << "Wait for target remove..." << std::endl;
-    QElapsedTimer elt;
     elt.start();
     while (0 == nfc_initiator_target_is_present(pnd, NULL)) {
     }
