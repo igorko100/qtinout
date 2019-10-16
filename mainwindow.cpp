@@ -113,6 +113,16 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 //! [3]
 
 void MainWindow::updateLabel(const QString &info) {
+
+    QString style;
+
+    if(info.at(0)=='W')
+        style = "QLabel { color : green; }";
+    else
+        style = "QLabel { color : blue; }";
+
+    infoLabel->setStyleSheet(style);
+
     infoLabel->setText(info);
 }
 
