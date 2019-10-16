@@ -85,12 +85,16 @@ void Worker::doWork(const QByteArray &parameter) {
       std::cerr << "UID (NFCID):";
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
+
+      emit resultReady(result);
+      while (nfc_initiator_target_is_present(pnd, &nt)){
+          //wait till the tag will be removed
+      }
     }
     // Close NFC device
     nfc_close(pnd);
     // Release the context
     nfc_exit(context);
 
-    emit resultReady(result);
 }
 
