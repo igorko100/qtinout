@@ -65,14 +65,16 @@ MainWindow::MainWindow()
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     infoLabel = new QLabel(tr("<i>Insert a card, please</i>"));
-    infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+    infoLabel->setFrameStyle(QFrame::NoFrame);
     infoLabel->setAlignment(Qt::AlignCenter);
 
     //set font
     labelFont = infoLabel->font();
-    labelFont.setPointSize(24);
-    labelFont.setBold(true);
-    infoLabel->setFont(labelFont);
+//    labelFont.setPointSize(24);
+//    labelFont.setBold(true);
+
+    infoLabel->setStyleSheet("QLabel { font-size: 24; font-weight: bold; color: grey; }");
+//    infoLabel->setFont(labelFont);
 
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -134,7 +136,7 @@ void MainWindow::updateLabel(States state) {
             text = "Bye-bye!";
             break;
         default:
-            style = "QLabel { font-size: 24; color: cyan; }";
+            style = "QLabel { font-size: 24; color: grey; }";
             text = "Waiting for a card...";
             labelFont.setPointSize(24);
 
