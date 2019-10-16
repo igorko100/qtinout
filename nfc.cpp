@@ -91,7 +91,7 @@ void Worker::doWork(const QString &parameter) {
       std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
 //      print_hex(nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << "size:" << nt.nti.nai.szUidLen;
-      result = QByteArray(nt.nti.nai.abtUid, nt.nti.nai.szUidLen).toHex();
+      result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen).toHex();
       std::cerr << " toHex():" << result.toLatin1() << std::endl;
     }
     // Close NFC device
