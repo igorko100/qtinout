@@ -79,6 +79,8 @@ void Worker::doWork(const QByteArray &parameter) {
       .nmt = NMT_ISO14443A,
       .nbr = NBR_106,
     };
+
+    int tag;
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
       std::cerr << "The following (NFC) ISO14443A tag was found:" << std::endl;
 //      std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
@@ -88,12 +90,12 @@ void Worker::doWork(const QByteArray &parameter) {
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
 
       std::cerr << "\n Tag is present: " << nfc_initiator_target_is_present(pnd, &nt) << std::endl;
-      while (!nfc_initiator_target_is_present(pnd, &nt)){
-          //wait till the tag will be removed
-          std::cerr << "\nIn while... " << nfc_initiator_target_is_present(pnd, &nt) << std::endl;
+      do {
+      //wait till the tag will be removed
+          tag = nfc_initiator_target_is_present(pnd, &nt);
+          std::cerr << "\nIn while... " << tag << std::endl;
+      } while (!tag);
 
-
-      }
     }
     // Close NFC device
     nfc_close(pnd);
