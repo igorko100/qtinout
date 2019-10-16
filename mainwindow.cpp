@@ -65,13 +65,12 @@ MainWindow::MainWindow()
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     infoLabel = new QLabel();
-//    infoLabel->setFrameStyle(QFrame::NoFrame);
-    infoLabel->setFrameStyle(QFrame::Box | QFrame::Raised);
+    infoLabel->setFrameStyle(QFrame::NoFrame);
 
     infoLabel->setAlignment(Qt::AlignCenter);
 
     iconLabel = new QLabel();
-    iconLabel->setFrameStyle(QFrame::Box | QFrame::Plain);
+    iconLabel->setFrameStyle(QFrame::NoFrame);
     iconLabel->setAlignment(Qt::AlignCenter);
 
 
@@ -121,37 +120,26 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 
 void MainWindow::updateLabel(States state) {
 
-//    labelFont.setPointSize(24);
-//  infoLabel->setFont(labelFont);
-
     QString style, text;
-//    labelFont.setPointSize(72);
-//    infoLabel->setFont(labelFont);
-
     QPixmap icon;
 
     switch (state) {
         case States::WELCOME:
-//            style = "QLabel { color : green; }";
             style = "QLabel { font: bold 72pt; color: green; }";
             text = "Welcome!";
-            icon = QPixmap("home.png");
+            icon = QPixmap("work.png");
             break;
         case States::BYE:
-//            style = "QLabel { color : blue; }";
             style = "QLabel { font: bold 72pt; color: blue; }";
             text = "Bye-bye!";
-            icon = QPixmap("work.png");
+            icon = QPixmap("home.png");
             break;
         default:
             style = "QLabel { font: normal 20pt; color: grey; }";
             text = "Waiting for card...";
             icon = QPixmap("wait.png");
-//            iconLabel->setPixmap(QPixmap("wait.png"));
-//            labelFont.setPointSize(24);
 
     }
-//    infoLabel->setFont(labelFont);
     infoLabel->setStyleSheet(style);
     iconLabel->setPixmap(icon);
     infoLabel->setText(text);
