@@ -75,12 +75,10 @@ void Worker::doWork(const QByteArray &parameter) {
       .nbr = NBR_106,
     };
 
+label:
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
-//      std::cerr << "The following (NFC) ISO14443A tag was found:" << std::endl;
-//      std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
-//      print_hex(nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
-      std::cerr << "UID (NFCID):";
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
+      std::cerr << "UID (NFCID):";
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
     }
     std::cerr << "Wait for target remove..." << std::endl;
@@ -94,8 +92,8 @@ void Worker::doWork(const QByteArray &parameter) {
         emit resultReady(result);
     } else {
         std::cerr << ">>>>> Waiting for a second..." << std::endl;
-        QThread::sleep(5); // Just wait for a second
-        doWork(QByteArray("Testing operate"));
+        QThread::sleep(1); // Just wait for a second
+        goto label; // ??? no better idea yet
     }
 
     // Close NFC device
