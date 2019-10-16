@@ -92,7 +92,7 @@ void Worker::doWork(const QString &parameter) {
 //      print_hex(nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << "size:" << nt.nti.nai.szUidLen;
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen).toHex();
-      std::cerr << " toHex():" << result.toLatin1() << std::endl;
+      std::cerr << " toHex():" << result.toLocal8Bit().constData() << std::endl;
     }
     // Close NFC device
     nfc_close(pnd);
