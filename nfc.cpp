@@ -23,7 +23,7 @@ void Controller::handleResults(const QByteArray &id) {
 
     QProcess process;
     if (prevState)
-        process.start("aplay skibka-music-logo-pn22.wav");
+        process.start("doorbell-shortened.wav");
     else
         process.start("aplay skibka-music-logo-pn22.wav");
     prevState = !prevState;
