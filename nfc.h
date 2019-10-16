@@ -14,10 +14,10 @@ class Worker : public QObject
     Q_OBJECT
 
 public slots:
-    void doWork(const QString &parameter);
+    void doWork(const QByteArray &parameter);
 
 signals:
-    void resultReady(const QString &result);
+    void resultReady(const QByteArray &result);
 };
 
 class Controller : public QObject
@@ -31,9 +31,9 @@ public:
         workerThread.wait();
     }
 public slots:
-    void handleResults(const QString &);
+    void handleResults(const QByteArray &);
 signals:
-    void operate(const QString &);
+    void operate(const QByteArray &);
 };
 
 

@@ -1,5 +1,6 @@
 #include "nfc.h"
 #include <iostream>
+#include <QByteArray>
 #include <QString>
 
 Controller::Controller() {
@@ -10,34 +11,22 @@ Controller::Controller() {
     connect(this, &Controller::operate, worker, &Worker::doWork);
     connect(worker, &Worker::resultReady, this, &Controller::handleResults);
     workerThread.start();
-    emit operate(QString("Testing operate"));
+    emit operate(QByteArray("Testing operate"));
 }
 
 
-
-static void print_hex(const uint8_t *pbtData, const size_t szBytes)
-{
-  size_t  szPos;
-
-  for (szPos = 0; szPos < szBytes; szPos++) {
-//    std::cerr << std::printf("%02x ", pbtData[szPos]);
-      std::cerr << std::hex << pbtData[szPos];
-  }
-  std::cerr << std::endl;
-}
-
-void Controller::handleResults(const QString &) {
-    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
+void Controller::handleResults(const QByteArray &) {
+//    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
 
     QThread::sleep(1); // Just wait for a second
 
-    emit operate(QString("Testing operate"));
+    emit operate(QByteArray("Testing operate"));
 }
 
 
-void Worker::doWork(const QString &parameter) {
+void Worker::doWork(const QByteArray &parameter) {
 
-    QString result;
+    QByteArray result;
 
     /* ... here is the expensive or blocking operation ... */
 
@@ -89,8 +78,8 @@ void Worker::doWork(const QString &parameter) {
 //      std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
 //      print_hex(nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << "UID (NFCID):";
-      result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen).toHex();
-      std::cerr << result.toLocal8Bit().constData() << std::endl;
+      result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
+      std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
     }
     // Close NFC device
     nfc_close(pnd);
