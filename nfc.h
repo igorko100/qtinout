@@ -27,6 +27,7 @@ class Controller : public QObject
 {
     Q_OBJECT
     QThread workerThread;
+    int prevState;
 public:
     Controller();
     ~Controller() {

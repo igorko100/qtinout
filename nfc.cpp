@@ -12,6 +12,8 @@ Controller::Controller() {
     connect(this, &Controller::operate, worker, &Worker::doWork);
     connect(worker, &Worker::resultReady, this, &Controller::handleResults);
     workerThread.start();
+
+    prevState = 0;
     emit operate(QByteArray("Testing operate"));
 }
 
@@ -20,7 +22,11 @@ void Controller::handleResults(const QByteArray &id) {
     std::cerr << "... Writing to DB ..." << std::endl;
 
     QProcess process;
-    process.start("aplay skibka-music-logo-pn22.wav");
+    if (prevState)
+        process.start("aplay skibka-music-logo-pn22.wav");
+    else
+        process.start("aplay skibka-music-logo-pn22.wav");
+    prevState != prevState;
     process.waitForFinished(-1); // will wait forever until finished
 
     emit operate(QByteArray("Testing operate"));
