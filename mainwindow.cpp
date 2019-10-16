@@ -132,7 +132,7 @@ void MainWindow::updateLabel(States state) {
             break;
         default:
             style = "QLabel { font: normal 20pt; color: grey; }";
-            text = "W a i t i n g   f o r   c a r d . . .";
+            text = "Waiting for card...";
 //            labelFont.setPointSize(24);
 
     }
