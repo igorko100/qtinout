@@ -94,7 +94,7 @@ void Worker::doWork(const QByteArray &parameter) {
         emit resultReady(result);
     } else {
         std::cerr << ">>>>> Waiting for a second..." << std::endl;
-        QThread::sleep(1); // Just wait for a second
+        QThread::sleep(5); // Just wait for a second
         doWork(QByteArray("Testing operate"));
     }
 
