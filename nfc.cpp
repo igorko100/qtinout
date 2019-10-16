@@ -37,8 +37,6 @@ void Controller::handleResults(const QString &) {
 
 void Worker::doWork(const QString &parameter) {
 
-    qDebug() << "In doWork!";
-
     QString result;
 
     /* ... here is the expensive or blocking operation ... */
@@ -90,7 +88,7 @@ void Worker::doWork(const QString &parameter) {
       std::cerr << "The following (NFC) ISO14443A tag was found:" << std::endl;
       std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
 //      print_hex(nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
-      std::cerr << "size:" << nt.nti.nai.szUidLen;
+      std::cerr << "\nsize:" << nt.nti.nai.szUidLen;
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen).toHex();
       std::cerr << " toHex():" << result.toLocal8Bit().constData() << std::endl;
     }
