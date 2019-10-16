@@ -82,8 +82,7 @@ void Worker::doWork(const QByteArray &parameter) {
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
     }
-//    std::cerr << "Wait for target remove..." << std::endl;
-
+    std::cerr << "Wait for target remove..." << std::endl;
     while (0 == nfc_initiator_target_is_present(pnd, NULL)) {
 
     }
