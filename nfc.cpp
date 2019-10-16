@@ -89,11 +89,11 @@ void Worker::doWork(const QByteArray &parameter) {
     while (0 == nfc_initiator_target_is_present(pnd, NULL)) {
     }
     // Here we try to omit too close events
-    if (elt.elapsed() > 100) {
+    if (elt.elapsed() > 250) {
         std::cerr << "elapsed time:" << elt.elapsed()<< std::endl;
         emit resultReady(result);
     } else {
-        std::cerr << "Waiting for a second..." << std::endl;
+        std::cerr << ">>>>> Waiting for a second..." << std::endl;
         QThread::sleep(1); // Just wait for a second
         doWork(QByteArray("Testing operate"));
     }
