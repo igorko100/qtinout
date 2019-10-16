@@ -89,7 +89,7 @@ void Worker::doWork(const QByteArray &parameter) {
     while (0 == nfc_initiator_target_is_present(pnd, NULL)) {
     }
     // Here we try to omit too close events
-    if (elt.elapsed() > 250) {
+    if (elt.elapsed() > 100) {
         std::cerr << "elapsed time:" << elt.elapsed()<< std::endl;
         emit resultReady(result);
     } else {
