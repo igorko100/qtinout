@@ -1,5 +1,6 @@
 #include "nfc.h"
 #include <iostream>
+#include <QString>
 
 Controller::Controller() {
 
