@@ -87,12 +87,12 @@ label:
     elt.start();
     while (0 == nfc_initiator_target_is_present(pnd, NULL)) {
     }
-    // Here we try to omit too close events
+    // Here we try to exclude too close events
     if (elt.elapsed() > 250) {
         std::cerr << "elapsed time:" << elt.elapsed()<< std::endl;
         emit resultReady(result);
     } else {
-        std::cerr << ">>>>> Waiting for a second..." << std::endl;
+        std::cerr << ">>>>> Duplicate events occured <<<<< waiting a second..." << std::endl;
         QThread::sleep(1); // Just wait for a second
         goto label; // ??? no better idea yet
     }
