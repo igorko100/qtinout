@@ -90,6 +90,8 @@ void Worker::doWork(const QByteArray &parameter) {
       std::cerr << "\n Tag is present: " << nfc_initiator_target_is_present(pnd, &nt) << std::endl;
       while (!nfc_initiator_target_is_present(pnd, &nt)){
           //wait till the tag will be removed
+          std::cerr << "\nIn while... " << nfc_initiator_target_is_present(pnd, &nt) << std::endl;
+
 
       }
     }
