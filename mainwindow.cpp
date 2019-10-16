@@ -64,7 +64,7 @@ MainWindow::MainWindow()
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    infoLabel = new QLabel();//tr("<i>Select menu</i>"));
+    infoLabel = new QLabel(tr("<i>Insert a card, please</i>"));
     infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     infoLabel->setAlignment(Qt::AlignCenter);
     //set font
