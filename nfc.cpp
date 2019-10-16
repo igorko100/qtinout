@@ -87,6 +87,7 @@ void Worker::doWork(const QByteArray &parameter) {
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
 
+      std::cerr << "\n Tag is present" << (nfc_initiator_target_is_present(pnd, &nt)) ? "false" : "true" << std::endl;
       while (!nfc_initiator_target_is_present(pnd, &nt)){
           //wait till the tag will be removed
 
