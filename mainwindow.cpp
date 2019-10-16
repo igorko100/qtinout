@@ -68,7 +68,7 @@ MainWindow::MainWindow()
     infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     infoLabel->setAlignment(Qt::AlignCenter);
     //set font
-    QFont font = label1->font();
+    QFont font = infoLabel->font();
     font.setPointSize(72);
     font.setBold(true);
     infoLabel->setFont(font);
