@@ -86,11 +86,11 @@ void Worker::doWork(const QString &parameter) {
     };
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
       std::cerr << "The following (NFC) ISO14443A tag was found:" << std::endl;
-      std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
+//      std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
 //      print_hex(nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
-      std::cerr << "\nsize:" << nt.nti.nai.szUidLen;
+      std::cerr << "UID (NFCID):";
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen).toHex();
-      std::cerr << " toHex():" << result.toLocal8Bit().constData() << std::endl;
+      std::cerr << result.toLocal8Bit().constData() << std::endl;
     }
     // Close NFC device
     nfc_close(pnd);
