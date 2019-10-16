@@ -26,7 +26,7 @@ void Controller::handleResults(const QByteArray &id) {
         process.start("aplay skibka-music-logo-pn22.wav");
     else
         process.start("aplay skibka-music-logo-pn22.wav");
-    prevState != prevState;
+    prevState ^= prevState;
     process.waitForFinished(-1); // will wait forever until finished
 
     emit operate(QByteArray("Testing operate"));
