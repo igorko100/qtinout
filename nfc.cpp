@@ -18,12 +18,13 @@ Controller::Controller() {
 void Controller::handleResults(const QByteArray &id) {
 //    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
 
-/*    if(previousTagID == id) {
+    if(previousTagID == id) {
         std::cout << "The same tag inserted!" << std::endl;
+        emit operate(QByteArray("Testing operate"));
         return;
     }
     previousTagID = id;
-*/
+
     QThread::sleep(1); // Just wait for a second
 
     emit operate(QByteArray("Testing operate"));
@@ -80,7 +81,6 @@ void Worker::doWork(const QByteArray &parameter) {
       .nbr = NBR_106,
     };
 
-    int tag;
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
       std::cerr << "The following (NFC) ISO14443A tag was found:" << std::endl;
 //      std::cerr << std::printf("       UID (NFCID%c): ", (nt.nti.nai.abtUid[0] == 0x08 ? '3' : '1'));
@@ -88,13 +88,6 @@ void Worker::doWork(const QByteArray &parameter) {
       std::cerr << "UID (NFCID):";
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
-      do {
-      //wait till the tag will be removed
-          nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt);
-          tag = nfc_initiator_target_is_present(pnd, &nt);
-          std::cerr << "\nIn while... " << tag << std::endl;
-      } while (!tag);
-
     }
     // Close NFC device
     nfc_close(pnd);
