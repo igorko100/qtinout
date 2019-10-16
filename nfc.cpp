@@ -22,10 +22,14 @@ void Controller::handleResults(const QByteArray &id) {
     std::cerr << "... Writing to DB ..." << std::endl;
 
     QProcess process;
-    if (prevState)
+    if (prevState) {
+        emit updateText("Welcome!");
         process.start("aplay doorbell-shortened.wav");
-    else
+    }
+    else {
+        emit updateText("Bye-bye!");
         process.start("aplay skibka-music-logo-pn22.wav");
+    }
     prevState = !prevState;
     process.waitForFinished(-1); // will wait forever until finished
 

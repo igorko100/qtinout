@@ -90,6 +90,7 @@ MainWindow::MainWindow()
     setMinimumSize(160, 160);
     resize(480, 320);
     Controller *c = new Controller;
+    connect (c, &Controller::updateText, this, &MainWindow::updateLabel);
 }
 //! [2]
 
@@ -105,6 +106,11 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 }
 #endif // QT_NO_CONTEXTMENU
 //! [3]
+
+void MainWindow::updateLabel(const QString &info) {
+    infoLabel->setText(info);
+}
+
 
 void MainWindow::newFile()
 {

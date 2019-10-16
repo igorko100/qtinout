@@ -52,6 +52,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QString>
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -73,6 +74,9 @@ protected:
     void contextMenuEvent(QContextMenuEvent *event) override;
 #endif // QT_NO_CONTEXTMENU
 //! [0]
+
+public slots:
+    void updateLabel(const QString &info);
 
 //! [1]
 private slots:

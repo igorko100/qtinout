@@ -38,6 +38,7 @@ public slots:
     void handleResults(const QByteArray &);
 signals:
     void operate(const QByteArray &);
+    void updateText(const QString &);
 };
 
 
