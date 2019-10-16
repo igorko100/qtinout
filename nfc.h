@@ -13,6 +13,8 @@ class Worker : public QObject
 {
     Q_OBJECT
 
+    int clearToRead;
+
 public slots:
     void doWork(const QByteArray &parameter);
 
@@ -24,7 +26,6 @@ class Controller : public QObject
 {
     Q_OBJECT
     QThread workerThread;
-    QByteArray previousTagID;
 public:
     Controller();
     ~Controller() {

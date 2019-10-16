@@ -2,6 +2,7 @@
 #include <iostream>
 #include <QByteArray>
 #include <QString>
+#include <QElapsedTimer>
 
 Controller::Controller() {
 
@@ -19,6 +20,7 @@ void Controller::handleResults(const QByteArray &id) {
 //    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
 
 //    QThread::sleep(1); // Just wait for a second
+
 
     emit operate(QByteArray("Testing operate"));
 }
@@ -83,15 +85,17 @@ void Worker::doWork(const QByteArray &parameter) {
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
     }
     std::cerr << "Wait for target remove..." << std::endl;
+    QElapsedTimer elt;
+    elt.start();
     while (0 == nfc_initiator_target_is_present(pnd, NULL)) {
-
     }
-
+    // Here we try to omit too close events
+    if (elt.elapsed() > 250)
+        emit resultReady(result);
     // Close NFC device
     nfc_close(pnd);
     // Release the context
     nfc_exit(context);
-    emit resultReady(result);
 
 }
 
