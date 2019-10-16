@@ -105,6 +105,7 @@ MainWindow::MainWindow()
 }
 //! [2]
 
+/*
 //! [3]
 #ifndef QT_NO_CONTEXTMENU
 void MainWindow::contextMenuEvent(QContextMenuEvent *event)
@@ -117,6 +118,7 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 }
 #endif // QT_NO_CONTEXTMENU
 //! [3]
+*/
 
 void MainWindow::updateLabel(States state) {
 
@@ -157,7 +159,7 @@ void MainWindow::open()
     infoLabel->setText(tr("Invoked <b>File|Open</b>"));
 }
 
-void MainWindow::save()
+/*void MainWindow::save()
 {
     infoLabel->setText(tr("Invoked <b>File|Save</b>"));
 }
@@ -231,6 +233,7 @@ void MainWindow::setParagraphSpacing()
 {
     infoLabel->setText(tr("Invoked <b>Edit|Format|Set Paragraph Spacing</b>"));
 }
+*/
 
 void MainWindow::about()
 {
@@ -249,19 +252,19 @@ void MainWindow::aboutQt()
 void MainWindow::createActions()
 {
 //! [5]
-    newAct = new QAction(tr("&New"), this);
+    newAct = new QAction(tr("&New person"), this);
     newAct->setShortcuts(QKeySequence::New);
-    newAct->setStatusTip(tr("Create a new file"));
+    newAct->setStatusTip(tr("Add a new person"));
     connect(newAct, &QAction::triggered, this, &MainWindow::newFile);
 //! [4]
 
-    openAct = new QAction(tr("&Open..."), this);
+    openAct = new QAction(tr("&List of persons"), this);
     openAct->setShortcuts(QKeySequence::Open);
-    openAct->setStatusTip(tr("Open an existing file"));
+    openAct->setStatusTip(tr("Show list of all persons"));
     connect(openAct, &QAction::triggered, this, &MainWindow::open);
 //! [5]
 
-    saveAct = new QAction(tr("&Save"), this);
+/*    saveAct = new QAction(tr("&Save"), this);
     saveAct->setShortcuts(QKeySequence::Save);
     saveAct->setStatusTip(tr("Save the document to disk"));
     connect(saveAct, &QAction::triggered, this, &MainWindow::save);
@@ -270,12 +273,12 @@ void MainWindow::createActions()
     printAct->setShortcuts(QKeySequence::Print);
     printAct->setStatusTip(tr("Print the document"));
     connect(printAct, &QAction::triggered, this, &MainWindow::print);
-
+*/
     exitAct = new QAction(tr("E&xit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
     exitAct->setStatusTip(tr("Exit the application"));
     connect(exitAct, &QAction::triggered, this, &QWidget::close);
-
+/*
     undoAct = new QAction(tr("&Undo"), this);
     undoAct->setShortcuts(QKeySequence::Undo);
     undoAct->setStatusTip(tr("Undo the last operation"));
@@ -333,7 +336,7 @@ void MainWindow::createActions()
     setParagraphSpacingAct->setStatusTip(tr("Change the gap between paragraphs"));
     connect(setParagraphSpacingAct, &QAction::triggered,
             this, &MainWindow::setParagraphSpacing);
-
+*/
     aboutAct = new QAction(tr("&About"), this);
     aboutAct->setStatusTip(tr("Show the application's About box"));
     connect(aboutAct, &QAction::triggered, this, &MainWindow::about);
@@ -342,7 +345,7 @@ void MainWindow::createActions()
     aboutQtAct->setStatusTip(tr("Show the Qt library's About box"));
     connect(aboutQtAct, &QAction::triggered, qApp, &QApplication::aboutQt);
     connect(aboutQtAct, &QAction::triggered, this, &MainWindow::aboutQt);
-
+/*
     leftAlignAct = new QAction(tr("&Left Align"), this);
     leftAlignAct->setCheckable(true);
     leftAlignAct->setShortcut(tr("Ctrl+L"));
@@ -374,7 +377,7 @@ void MainWindow::createActions()
     alignmentGroup->addAction(justifyAct);
     alignmentGroup->addAction(centerAct);
     leftAlignAct->setChecked(true);
-//! [6]
+//! [6] */
 }
 //! [7]
 
@@ -382,19 +385,19 @@ void MainWindow::createActions()
 void MainWindow::createMenus()
 {
 //! [9] //! [10]
-    fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu = menuBar()->addMenu(tr("&Administration"));
     fileMenu->addAction(newAct);
 //! [9]
     fileMenu->addAction(openAct);
 //! [10]
-    fileMenu->addAction(saveAct);
-    fileMenu->addAction(printAct);
+//    fileMenu->addAction(saveAct);
+//    fileMenu->addAction(printAct);
 //! [11]
     fileMenu->addSeparator();
 //! [11]
     fileMenu->addAction(exitAct);
 
-    editMenu = menuBar()->addMenu(tr("&Edit"));
+/*    editMenu = menuBar()->addMenu(tr("&Edit"));
     editMenu->addAction(undoAct);
     editMenu->addAction(redoAct);
     editMenu->addSeparator();
@@ -402,10 +405,12 @@ void MainWindow::createMenus()
     editMenu->addAction(copyAct);
     editMenu->addAction(pasteAct);
     editMenu->addSeparator();
+*/
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(aboutAct);
     helpMenu->addAction(aboutQtAct);
+/*
 //! [8]
 
 //! [12]
@@ -420,5 +425,6 @@ void MainWindow::createMenus()
     formatMenu->addSeparator();
     formatMenu->addAction(setLineSpacingAct);
     formatMenu->addAction(setParagraphSpacingAct);
+*/
 }
 //! [12]
