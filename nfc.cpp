@@ -17,10 +17,9 @@ Controller::Controller() {
 
 
 void Controller::handleResults(const QByteArray &id) {
-//    std::cerr << "... Here we will handle reading of a card and wait for another read ..." << std::endl;
+    std::cerr << "... Writing to DB ..." << std::endl;
 
 //    QThread::sleep(1); // Just wait for a second
-
 
     emit operate(QByteArray("Testing operate"));
 }
