@@ -65,9 +65,17 @@ MainWindow::MainWindow()
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     infoLabel = new QLabel();
-    infoLabel->setFrameStyle(QFrame::NoFrame);
+//    infoLabel->setFrameStyle(QFrame::NoFrame);
+    infoLabel->setFrameStyle(QFrame::Box | QFrame::Raised);
+
     infoLabel->setAlignment(Qt::AlignCenter);
 
+    iconLabel = new QLabel();
+    iconLabel->setFrameStyle(QFrame::Box | QFrame::Plain);
+    iconLabel->setAlignment(Qt::AlignCenter);
+
+
+//    iconLabel->setPixmap(QPixmap("work.png"));
 
     updateLabel(States::WAIT);
 
@@ -75,8 +83,9 @@ MainWindow::MainWindow()
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->setContentsMargins(5, 5, 5, 5);
+    layout->setContentsMargins(10, 10, 10, 10);
     layout->addWidget(topFiller);
+    layout->addWidget(iconLabel);
     layout->addWidget(infoLabel);
     layout->addWidget(bottomFiller);
     widget->setLayout(layout);
@@ -119,27 +128,34 @@ void MainWindow::updateLabel(States state) {
 //    labelFont.setPointSize(72);
 //    infoLabel->setFont(labelFont);
 
+    QPixmap icon;
+
     switch (state) {
         case States::WELCOME:
 //            style = "QLabel { color : green; }";
             style = "QLabel { font: bold 72pt; color: green; }";
             text = "Welcome!";
+            icon = QPixmap("home.png");
             break;
         case States::BYE:
 //            style = "QLabel { color : blue; }";
             style = "QLabel { font: bold 72pt; color: blue; }";
             text = "Bye-bye!";
+            icon = QPixmap("work.png");
             break;
         default:
             style = "QLabel { font: normal 20pt; color: grey; }";
             text = "Waiting for card...";
+            icon = QPixmap("wait.png");
+//            iconLabel->setPixmap(QPixmap("wait.png"));
 //            labelFont.setPointSize(24);
 
     }
 //    infoLabel->setFont(labelFont);
     infoLabel->setStyleSheet(style);
-
+    iconLabel->setPixmap(icon);
     infoLabel->setText(text);
+
 }
 
 

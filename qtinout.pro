@@ -11,3 +11,8 @@ target.path = .
 INSTALLS += target
 LIBS += -lnfc
 DEFINES += QT_NO_OPENGL
+
+DISTFILES += \
+    home.png \
+    wait.png \
+    work.png

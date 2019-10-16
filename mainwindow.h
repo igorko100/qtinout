@@ -135,8 +135,9 @@ private:
     QAction *aboutAct;
     QAction *aboutQtAct;
     QLabel *infoLabel;
+    QLabel *iconLabel;
 
-    QFont labelFont;
+    QPixmap icon;
 };
 //! [3]
 
