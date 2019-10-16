@@ -64,9 +64,14 @@ MainWindow::MainWindow()
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    infoLabel = new QLabel(tr("<i>Select menu</i>"));
+    infoLabel = new QLabel();//tr("<i>Select menu</i>"));
     infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     infoLabel->setAlignment(Qt::AlignCenter);
+    //set font
+    QFont font = label1->font();
+    font.setPointSize(72);
+    font.setBold(true);
+    infoLabel->setFont(font);
 
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
