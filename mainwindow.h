@@ -53,6 +53,7 @@
 
 #include <QMainWindow>
 #include <QString>
+#include "nfc.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -76,7 +77,7 @@ protected:
 //! [0]
 
 public slots:
-    void updateLabel(const QString &info);
+    void updateLabel(States state);
 
 //! [1]
 private slots:

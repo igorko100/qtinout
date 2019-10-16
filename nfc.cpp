@@ -25,18 +25,18 @@ void Controller::handleResults(const QByteArray &id) {
 
     QProcess process;
     if (prevState) {
-        emit updateText("Welcome!");
+        emit updateText(States::WELCOME);
         QApplication::processEvents();
         process.start("aplay doorbell-shortened.wav");
     }
     else {
-        emit updateText("Bye-bye!");
+        emit updateText(States::BYE);
         QApplication::processEvents();
         process.start("aplay skibka-music-logo-pn22.wav");
     }
     prevState = !prevState;
     process.waitForFinished(-1); // will wait forever until finished
-
+    emit updateText(States::WAIT);
     emit operate(QByteArray("Testing operate"));
 }
 

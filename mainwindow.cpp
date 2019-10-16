@@ -69,7 +69,7 @@ MainWindow::MainWindow()
     infoLabel->setAlignment(Qt::AlignCenter);
     //set font
     QFont font = infoLabel->font();
-    font.setPointSize(72);
+    font.setPointSize(24);
     font.setBold(true);
     infoLabel->setFont(font);
 
@@ -112,18 +112,27 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 #endif // QT_NO_CONTEXTMENU
 //! [3]
 
-void MainWindow::updateLabel(const QString &info) {
+void MainWindow::updateLabel(States state) {
 
-    QString style;
-
-    if(info.at(0)=='W')
-        style = "QLabel { color : green; }";
-    else
-        style = "QLabel { color : blue; }";
-
+    QString style, text;
+    switch (state) {
+        case States::WELCOME:
+//            style = "QLabel { color : green; }";
+            style = "QLabel { font-size: 72; color: green; }";
+            text = "Welcome!";
+            break;
+        case States::BYE:
+//            style = "QLabel { color : blue; }";
+            style = "QLabel { font-size: 72; color: blue; }";
+            text = "Bye-bye!";
+            break;
+        default:
+            style = "QLabel { font-size: 24; color: cyan; }";
+            text = "Waiting for a card...";
+    }
     infoLabel->setStyleSheet(style);
 
-    infoLabel->setText(info);
+    infoLabel->setText(text);
 }
 
 

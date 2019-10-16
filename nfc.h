@@ -9,6 +9,13 @@
 #include <stdlib.h>
 #include <nfc/nfc.h>
 
+enum States
+{
+   WELCOME,
+   BYE,
+   WAIT
+};
+
 // Threads for NFC reading (taken from QT docs)
 class Worker : public QObject
 {
@@ -28,6 +35,7 @@ class Controller : public QObject
     Q_OBJECT
     QThread workerThread;
     unsigned prevState;
+
 public:
     Controller();
     ~Controller() {
@@ -38,7 +46,7 @@ public slots:
     void handleResults(const QByteArray &);
 signals:
     void operate(const QByteArray &);
-    void updateText(const QString &);
+    void updateText(States state);
 };
 
 
