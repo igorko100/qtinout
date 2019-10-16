@@ -4,6 +4,7 @@
 #include <QDebug>
 
 #include <QThread>
+#include <QElapsedTimer>
 
 #include <stdlib.h>
 #include <nfc/nfc.h>
@@ -13,7 +14,7 @@ class Worker : public QObject
 {
     Q_OBJECT
 
-    int tooFast;
+    QElapsedTimer elt;
 
 public slots:
     void doWork(const QByteArray &parameter);

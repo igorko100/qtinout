@@ -2,7 +2,6 @@
 #include <iostream>
 #include <QByteArray>
 #include <QString>
-#include <QElapsedTimer>
 
 Controller::Controller() {
 
@@ -75,7 +74,6 @@ void Worker::doWork(const QByteArray &parameter) {
       .nbr = NBR_106,
     };
 
-    QElapsedTimer elt;
 label:
     std::cerr << std::endl << "Wait for target..." << std::endl;
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
