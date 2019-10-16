@@ -19,11 +19,8 @@ Controller::Controller() {
 void Controller::handleResults(const QByteArray &id) {
     std::cerr << "... Writing to DB ..." << std::endl;
 
-
-//    QThread::sleep(1); // Just wait for a second
-
     QProcess process;
-    process.start("aplay doorbell-shortened.wav");
+    process.start("aplay skibka-music-logo-pn22.wav");
     process.waitForFinished(-1); // will wait forever until finished
 
     emit operate(QByteArray("Testing operate"));
