@@ -122,17 +122,17 @@ void MainWindow::updateLabel(States state) {
     switch (state) {
         case States::WELCOME:
 //            style = "QLabel { color : green; }";
-            style = "QLabel { font: 72pt; color: green; }";
+            style = "QLabel { font: bold 72pt; color: green; }";
             text = "Welcome!";
             break;
         case States::BYE:
 //            style = "QLabel { color : blue; }";
-            style = "QLabel { font: 72pt; color: blue; }";
+            style = "QLabel { font: bold 72pt; color: blue; }";
             text = "Bye-bye!";
             break;
         default:
-            style = "QLabel { font: 24pt; color: grey; }";
-            text = "W a i t i n g   f o r   a   c a r d . . .";
+            style = "QLabel { font: normal 20pt; color: grey; }";
+            text = "W a i t i n g   f o r   c a r d . . .";
 //            labelFont.setPointSize(24);
 
     }
