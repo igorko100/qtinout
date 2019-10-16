@@ -88,8 +88,6 @@ void Worker::doWork(const QByteArray &parameter) {
       std::cerr << "UID (NFCID):";
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
-
-      std::cerr << "\n Tag is present: " << nfc_initiator_target_is_present(pnd, &nt) << std::endl;
       do {
       //wait till the tag will be removed
           tag = nfc_initiator_target_is_present(pnd, &nt);
