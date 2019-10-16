@@ -117,12 +117,12 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 
 void MainWindow::updateLabel(States state) {
 
-    labelFont.setPointSize(24);
-    infoLabel->setFont(labelFont);
+//    labelFont.setPointSize(24);
+//  infoLabel->setFont(labelFont);
 
     QString style, text;
-    labelFont.setPointSize(72);
-    infoLabel->setFont(labelFont);
+//    labelFont.setPointSize(72);
+//    infoLabel->setFont(labelFont);
 
     switch (state) {
         case States::WELCOME:
@@ -138,10 +138,10 @@ void MainWindow::updateLabel(States state) {
         default:
             style = "QLabel { font-size: 24; color: grey; }";
             text = "Waiting for a card...";
-            labelFont.setPointSize(24);
+//            labelFont.setPointSize(24);
 
     }
-    infoLabel->setFont(labelFont);
+//    infoLabel->setFont(labelFont);
     infoLabel->setStyleSheet(style);
 
     infoLabel->setText(text);
