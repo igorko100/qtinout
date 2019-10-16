@@ -21,8 +21,9 @@ void Controller::handleResults(const QByteArray &id) {
 /*    if(previousTagID == id) {
         std::cout << "The same tag inserted!" << std::endl;
         return;
-    }*/
+    }
     previousTagID = id;
+*/
     QThread::sleep(1); // Just wait for a second
 
     emit operate(QByteArray("Testing operate"));
@@ -87,7 +88,7 @@ void Worker::doWork(const QByteArray &parameter) {
       std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
 
       emit resultReady(result);
-      while (nfc_initiator_target_is_present(pnd, &nt)){
+      while (!nfc_initiator_target_is_present(pnd, &nt)){
           //wait till the tag will be removed
       }
     }
