@@ -135,6 +135,8 @@ private:
     QAction *aboutAct;
     QAction *aboutQtAct;
     QLabel *infoLabel;
+
+    QFont labelFont;
 };
 //! [3]
 

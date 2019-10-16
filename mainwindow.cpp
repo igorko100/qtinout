@@ -67,11 +67,12 @@ MainWindow::MainWindow()
     infoLabel = new QLabel(tr("<i>Insert a card, please</i>"));
     infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     infoLabel->setAlignment(Qt::AlignCenter);
+
     //set font
-    QFont font = infoLabel->font();
-    font.setPointSize(24);
-    font.setBold(true);
-    infoLabel->setFont(font);
+    labelFont = infoLabel->font();
+    labelFont.setPointSize(24);
+    labelFont.setBold(true);
+    infoLabel->setFont(labelFont);
 
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -114,7 +115,13 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 
 void MainWindow::updateLabel(States state) {
 
+    labelFont.setPointSize(24);
+    infoLabel->setFont(labelFont);
+
     QString style, text;
+    labelFont.setPointSize(72);
+    infoLabel->setFont(labelFont);
+
     switch (state) {
         case States::WELCOME:
 //            style = "QLabel { color : green; }";
@@ -129,7 +136,10 @@ void MainWindow::updateLabel(States state) {
         default:
             style = "QLabel { font-size: 24; color: cyan; }";
             text = "Waiting for a card...";
+            labelFont.setPointSize(24);
+
     }
+    infoLabel->setFont(labelFont);
     infoLabel->setStyleSheet(style);
 
     infoLabel->setText(text);
