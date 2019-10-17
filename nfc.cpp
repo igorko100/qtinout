@@ -25,7 +25,7 @@ void Controller::handleResults(const QByteArray &id) {
 
     QDateTime timestamp;
     timestamp = QDateTime::currentDateTime();
-    QString ts = timestamp.toString("YYYY-MM-DD hh:mm:ss");
+    QString ts = timestamp.toString("yyyy-MM-dd hh:mm:ss");
     std::cerr << "... Writing to DB at " << ts.toLocal8Bit().data() << " ..." << std::endl;
 
     QProcess process;
