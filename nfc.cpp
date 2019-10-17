@@ -29,7 +29,7 @@ void Controller::handleResults(const QByteArray &id) {
     std::cerr << "... Writing to DB at " << ts.toLocal8Bit().data() << " ..." << std::endl;
 
     QProcess process;
-    if (prevState) {
+    if (!prevState) {
         emit updateText(States::WELCOME);
         QApplication::processEvents();
         process.start("aplay doorbell-shortened.wav");
