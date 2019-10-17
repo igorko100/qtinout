@@ -53,6 +53,8 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QSqlDatabase>
+
 #include "nfc.h"
 
 QT_BEGIN_NAMESPACE

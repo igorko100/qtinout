@@ -1,4 +1,4 @@
-QT += widgets
+QT += widgets core sql
 
 HEADERS       = mainwindow.h \
     nfc.h

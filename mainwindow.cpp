@@ -106,6 +106,9 @@ MainWindow::MainWindow()
     resize(480, 320);
     Controller *c = new Controller;
     connect (c, &Controller::updateText, this, &MainWindow::updateLabel);
+
+    qDebug() << QSqlDatabase::drivers();
+
 }
 //! [2]
 
