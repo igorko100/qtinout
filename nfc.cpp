@@ -26,6 +26,7 @@ void Controller::handleResults(const QByteArray &id) {
     QDateTime timestamp;
     timestamp = QDateTime::currentDateTime();
     QString ts = timestamp.toString("yyyy-MM-dd hh:mm:ss");
+    std::cerr << "Inserted card with UID:" << QString(id.toHex()).toLocal8Bit().constData() << std::endl;
     std::cerr << "... Writing to DB at " << ts.toLocal8Bit().data() << " ..." << std::endl;
 
     QProcess process;
@@ -101,8 +102,8 @@ label:
     std::cerr << std::endl << "Wait for target..." << std::endl;
     if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
       result = QByteArray((char*)nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
-      std::cerr << "UID (NFCID):";
-      std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
+//      std::cerr << "UID (NFCID):";
+//      std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
     }
     std::cerr << "Wait for target remove..." << std::endl;
     elt.start();
