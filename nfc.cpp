@@ -4,6 +4,7 @@
 #include <QString>
 #include <QProcess>
 #include <QApplication>
+#include <QDateTime>
 
 
 Controller::Controller() {
@@ -21,7 +22,11 @@ Controller::Controller() {
 
 
 void Controller::handleResults(const QByteArray &id) {
-    std::cerr << "... Writing to DB ..." << std::endl;
+
+    QDateTime timestamp;
+    timestamp = QDateTime::currentDateTime();
+    QString ts = timestamp.toString("YYYY-MM-DD hh:mm:ss");
+    std::cerr << "... Writing to DB at " << ts.toLocal8Bit().data() << " ..." << std::endl;
 
     QProcess process;
     if (prevState) {
@@ -44,6 +49,7 @@ void Controller::handleResults(const QByteArray &id) {
 void Worker::doWork(const QByteArray &parameter) {
 
     QByteArray result;
+
 
     /* ... here is the expensive or blocking operation ... */
 
@@ -104,7 +110,7 @@ label:
     }
     // Here we try to exclude too close events
     if (elt.elapsed() > 250) {
-        std::cerr << "elapsed time:" << elt.elapsed()<< std::endl;
+//        std::cerr << "elapsed time:" << elt.elapsed()<< std::endl;
         emit resultReady(result);
     } else {
         std::cerr << ">>>>> Duplicate events occured <<<<< waiting a second..." << std::endl;
