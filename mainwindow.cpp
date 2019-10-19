@@ -79,8 +79,7 @@ MainWindow::MainWindow()
 
 
 //    logoLabel->setPixmap(QPixmap("Logo_CNI_ua.png"));
-    logoLabel->setPixmap(QPixmap("CNIua.png"));
-
+//    logoLabel->setPixmap(QPixmap("CNIua.png"));
 
     updateLabel(States::WAIT);
 
