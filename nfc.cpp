@@ -85,8 +85,8 @@ void Controller::handleResults(const QByteArray &id) {
         int ret = msgBox.exec();
 
         if(ret == QMessageBox::Cancel) {
-            emit operate();
-            return;
+//            emit operate();
+//            return;
         }
         else {
             AddNewUserDialog dlg;
