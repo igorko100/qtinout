@@ -29,6 +29,7 @@ AddNewUserDialog::AddNewUserDialog(QWidget *parent) :
 
     connect(ui->createNewUserButton, SIGNAL(clicked()), this, SLOT(createNewUserClicked()));
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
+    connect(ui->backSpaceButton, SIGNAL(clicked()), this, SLOT(backSpace()));
 
     ui->cardNumberLineEdit->installEventFilter(this);
     ui->passwordLineEdit->installEventFilter(this);
@@ -56,6 +57,18 @@ bool AddNewUserDialog::eventFilter(QObject* object, QEvent* event)
     return false;
 }
 
+void AddNewUserDialog::backSpace() {
+    if (currentInput == 0) {
+        ui->cardNumberLineEdit->backspace();
+        ui->cardNumberLineEdit->setFocus();
+    }
+    else {
+        ui->passwordLineEdit->backspace();
+        ui->passwordLineEdit->setFocus();
+    }
+}
+
+
 void AddNewUserDialog::createNewUserClicked() {
     if(ui->passwordLineEdit->text() == pass)
         qDebug()<<"Create accepted!!!";
@@ -66,10 +79,14 @@ void AddNewUserDialog::digitClicked() {
     {
         QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
         int digitValue = clickedButton->text().toInt();
-        if (currentInput == 0)
+        if (currentInput == 0) {
             ui->cardNumberLineEdit->setText(ui->cardNumberLineEdit->text() + QString::number(digitValue));
-        else
+            ui->cardNumberLineEdit->setFocus();
+        }
+        else {
             ui->passwordLineEdit->setText(ui->passwordLineEdit->text() + QString::number(digitValue));
+            ui->passwordLineEdit->setFocus();
+        }
     }
 }
 

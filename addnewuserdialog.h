@@ -31,6 +31,7 @@ protected:
 private slots:
     void digitClicked();
     void createNewUserClicked();
+    void backSpace();
 
 };
 
