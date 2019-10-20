@@ -67,6 +67,8 @@ void Controller::handleResults(const QByteArray &id) {
 
     query.exec();
 
+    qDebug()<<query.lastError().text();
+
 //    while (query.next()) {
     query.next();
     QString status = query.value(0).toString();
