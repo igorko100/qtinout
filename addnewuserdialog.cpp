@@ -70,10 +70,11 @@ void AddNewUserDialog::backSpace() {
 
 
 void AddNewUserDialog::createNewUserClicked() {
-    if(ui->passwordLineEdit->text() == pass)
+    if(ui->passwordLineEdit->text() == pass) {
         qDebug()<<"Create accepted!!!";
         emit accepted();
         accept();
+    }
 }
 
 void AddNewUserDialog::digitClicked() {
