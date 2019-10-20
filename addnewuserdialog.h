@@ -2,6 +2,7 @@
 #define ADDNEWUSERDIALOG_H
 
 #include <QDialog>
+#include <QLineEdit>
 
 namespace Ui {
 class AddNewUserDialog;
@@ -17,6 +18,16 @@ public:
 
 private:
     Ui::AddNewUserDialog *ui;
+
+    bool currentInput;
+
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev) override;
+
+private slots:
+    void digitClicked();
+
 };
 
 #endif // ADDNEWUSERDIALOG_H

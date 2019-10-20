@@ -28,6 +28,11 @@
     </property>
     <item row="0" column="0">
      <widget class="QLabel" name="cardNumberLabel">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Card number:</string>
       </property>
@@ -53,6 +58,11 @@
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="passwordLabel">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Password:</string>
       </property>
@@ -71,6 +81,11 @@
      <width>281</width>
      <height>101</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Create new user</string>
@@ -129,7 +144,7 @@
      </widget>
     </item>
     <item row="0" column="2">
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="pushButton_3">
       <property name="minimumSize">
        <size>
         <width>100</width>
@@ -165,7 +180,7 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="pushButton_4">
       <property name="minimumSize">
        <size>
         <width>100</width>
@@ -183,7 +198,7 @@
      </widget>
     </item>
     <item row="0" column="0">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButton_1">
       <property name="minimumSize">
        <size>
         <width>100</width>
@@ -219,7 +234,7 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="pushButton_5">
       <property name="minimumSize">
        <size>
         <width>100</width>
@@ -237,7 +252,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="pushButton_2">
       <property name="minimumSize">
        <size>
         <width>100</width>
@@ -255,7 +270,7 @@
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QPushButton" name="pushButton_10">
+     <widget class="QPushButton" name="pushButton_0">
       <property name="minimumSize">
        <size>
         <width>100</width>
@@ -282,6 +297,11 @@
      <width>221</width>
      <height>101</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Cancel</string>
