@@ -2,11 +2,13 @@ QT += widgets core sql
 
 HEADERS       = mainwindow.h \
     nfc.h \
-    digitalclock.h
+    digitalclock.h \
+    addnewuserdialog.h
 SOURCES       = mainwindow.cpp \
                 main.cpp \
     nfc.cpp \
-    digitalclock.cpp
+    digitalclock.cpp \
+    addnewuserdialog.cpp
 
 # install
 target.path = .
@@ -18,3 +20,6 @@ DISTFILES += \
     home.png \
     wait.png \
     work.png
+
+FORMS += \
+    addnewuserdialog.ui

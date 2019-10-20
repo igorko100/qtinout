@@ -53,6 +53,7 @@
 #include "mainwindow.h"
 #include "nfc.h"
 #include "digitalclock.h"
+#include "addnewuserdialog.h"
 
 MainWindow::MainWindow()
 {
@@ -112,6 +113,10 @@ MainWindow::MainWindow()
     connect (c, &Controller::updateText, this, &MainWindow::updateLabel);
 
     qDebug() << QSqlDatabase::drivers();
+
+    AddNewUserDialog dlg;
+    dlg.exec();
+
 }
 //! [2]
 
