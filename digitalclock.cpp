@@ -48,101 +48,37 @@
 **
 ****************************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#include "digitalclock.h"
 
-#include <QMainWindow>
-#include <QString>
-
-#include "nfc.h"
-
-QT_BEGIN_NAMESPACE
-class QAction;
-class QActionGroup;
-class QLabel;
-class QMenu;
-QT_END_NAMESPACE
+#include <QtWidgets>
 
 //! [0]
-class MainWindow : public QMainWindow
+DigitalClock::DigitalClock(QWidget *parent)
+    : QLCDNumber(parent)
 {
-    Q_OBJECT
+    setSegmentStyle(Filled);
 
-public:
-    MainWindow();
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &DigitalClock::showTime);
+    timer->start(1000);
 
-protected:
-/*#ifndef QT_NO_CONTEXTMENU
-    void contextMenuEvent(QContextMenuEvent *event) override;
-#endif // QT_NO_CONTEXTMENU
+    showTime();
+
+    setStyleSheet("QLCDNumber { color: grey; }");
+
+//    setWindowTitle(tr("Digital Clock"));
+//    resize(250, 100);
+}
 //! [0]
-*/
-
-public slots:
-    void updateLabel(States state);
 
 //! [1]
-private slots:
-    void newFile();
-    void open();
-/*    void save();
-    void print();
-    void undo();
-    void redo();
-    void cut();
-    void copy();
-    void paste();
-    void bold();
-    void italic();
-    void leftAlign();
-    void rightAlign();
-    void justify();
-    void center();
-    void setLineSpacing();
-    void setParagraphSpacing(); */
-    void about();
-    void aboutQt();
-//! [1]
-
+void DigitalClock::showTime()
+//! [1] //! [2]
+{
+    QTime time = QTime::currentTime();
+    QString text = time.toString("hh:mm");
+    if ((time.second() % 2) == 0)
+        text[2] = ' ';
+    display(text);
+}
 //! [2]
-private:
-    void createActions();
-    void createMenus();
-    void openDB();
-//! [2]
-
-//! [3]
-    QMenu *fileMenu;
-//    QMenu *editMenu;
-//    QMenu *formatMenu;
-    QMenu *helpMenu;
-//    QActionGroup *alignmentGroup;
-    QAction *newAct;
-    QAction *openAct;
-//    QAction *saveAct;
-//    QAction *printAct;
-    QAction *exitAct;
-/*    QAction *undoAct;
-    QAction *redoAct;
-    QAction *cutAct;
-    QAction *copyAct;
-    QAction *pasteAct;
-    QAction *boldAct;
-    QAction *italicAct;
-    QAction *leftAlignAct;
-    QAction *rightAlignAct;
-    QAction *justifyAct;
-    QAction *centerAct;
-    QAction *setLineSpacingAct;
-    QAction *setParagraphSpacingAct; */
-    QAction *aboutAct;
-    QAction *aboutQtAct;
-    QLabel *infoLabel;
-    QLabel *iconLabel;
-    QLabel *logoLabel;
-
-    QPixmap icon;
-};
-//! [3]
-
-#endif

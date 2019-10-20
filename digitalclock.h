@@ -48,101 +48,22 @@
 **
 ****************************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef DIGITALCLOCK_H
+#define DIGITALCLOCK_H
 
-#include <QMainWindow>
-#include <QString>
-
-#include "nfc.h"
-
-QT_BEGIN_NAMESPACE
-class QAction;
-class QActionGroup;
-class QLabel;
-class QMenu;
-QT_END_NAMESPACE
+#include <QLCDNumber>
 
 //! [0]
-class MainWindow : public QMainWindow
+class DigitalClock : public QLCDNumber
 {
     Q_OBJECT
 
 public:
-    MainWindow();
+    DigitalClock(QWidget *parent = nullptr);
 
-protected:
-/*#ifndef QT_NO_CONTEXTMENU
-    void contextMenuEvent(QContextMenuEvent *event) override;
-#endif // QT_NO_CONTEXTMENU
-//! [0]
-*/
-
-public slots:
-    void updateLabel(States state);
-
-//! [1]
 private slots:
-    void newFile();
-    void open();
-/*    void save();
-    void print();
-    void undo();
-    void redo();
-    void cut();
-    void copy();
-    void paste();
-    void bold();
-    void italic();
-    void leftAlign();
-    void rightAlign();
-    void justify();
-    void center();
-    void setLineSpacing();
-    void setParagraphSpacing(); */
-    void about();
-    void aboutQt();
-//! [1]
-
-//! [2]
-private:
-    void createActions();
-    void createMenus();
-    void openDB();
-//! [2]
-
-//! [3]
-    QMenu *fileMenu;
-//    QMenu *editMenu;
-//    QMenu *formatMenu;
-    QMenu *helpMenu;
-//    QActionGroup *alignmentGroup;
-    QAction *newAct;
-    QAction *openAct;
-//    QAction *saveAct;
-//    QAction *printAct;
-    QAction *exitAct;
-/*    QAction *undoAct;
-    QAction *redoAct;
-    QAction *cutAct;
-    QAction *copyAct;
-    QAction *pasteAct;
-    QAction *boldAct;
-    QAction *italicAct;
-    QAction *leftAlignAct;
-    QAction *rightAlignAct;
-    QAction *justifyAct;
-    QAction *centerAct;
-    QAction *setLineSpacingAct;
-    QAction *setParagraphSpacingAct; */
-    QAction *aboutAct;
-    QAction *aboutQtAct;
-    QLabel *infoLabel;
-    QLabel *iconLabel;
-    QLabel *logoLabel;
-
-    QPixmap icon;
+    void showTime();
 };
-//! [3]
+//! [0]
 
 #endif

@@ -1,10 +1,12 @@
 QT += widgets core sql
 
 HEADERS       = mainwindow.h \
-    nfc.h
+    nfc.h \
+    digitalclock.h
 SOURCES       = mainwindow.cpp \
                 main.cpp \
-    nfc.cpp
+    nfc.cpp \
+    digitalclock.cpp
 
 # install
 target.path = .

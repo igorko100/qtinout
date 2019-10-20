@@ -5,6 +5,7 @@
 
 #include <QThread>
 #include <QElapsedTimer>
+#include <QSqlDatabase>
 
 #include <stdlib.h>
 #include <nfc/nfc.h>
@@ -24,7 +25,7 @@ class Worker : public QObject
     QElapsedTimer elt;
 
 public slots:
-    void doWork(const QByteArray &parameter);
+    void doWork();
 
 signals:
     void resultReady(const QByteArray &result);
@@ -36,16 +37,21 @@ class Controller : public QObject
     QThread workerThread;
     unsigned prevState;
 
+    QSqlDatabase db;
+
 public:
     Controller();
     ~Controller() {
         workerThread.quit();
         workerThread.wait();
     }
+private:
+    void openDB ();
+
 public slots:
     void handleResults(const QByteArray &);
 signals:
-    void operate(const QByteArray &);
+    void operate();
     void updateText(States state);
 };
 

@@ -52,13 +52,12 @@
 
 #include "mainwindow.h"
 #include "nfc.h"
+#include "digitalclock.h"
 
-//! [0]
 MainWindow::MainWindow()
 {
     QWidget *widget = new QWidget;
     setCentralWidget(widget);
-//! [0]
 
 //! [1]
     QWidget *topFiller = new QWidget;
@@ -86,15 +85,21 @@ MainWindow::MainWindow()
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
+    DigitalClock *clock = new DigitalClock();
+//    clock->resize(250, 100);
+    clock->setFixedSize(450, 250);
+    clock->setFrameStyle(QFrame::NoFrame);
+
+
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->setContentsMargins(10, 10, 10, 10);
+    layout->setContentsMargins(5, 5, 5, 5);
+    layout->addWidget(clock, 0, Qt::AlignCenter);
     layout->addWidget(topFiller);
     layout->addWidget(iconLabel);
     layout->addWidget(infoLabel);
     layout->addWidget(bottomFiller);
     layout->addWidget(logoLabel);
     widget->setLayout(layout);
-//! [1]
 
 //! [2]
     createActions();
@@ -107,24 +112,9 @@ MainWindow::MainWindow()
     connect (c, &Controller::updateText, this, &MainWindow::updateLabel);
 
     qDebug() << QSqlDatabase::drivers();
-
 }
 //! [2]
 
-/*
-//! [3]
-#ifndef QT_NO_CONTEXTMENU
-void MainWindow::contextMenuEvent(QContextMenuEvent *event)
-{
-    QMenu menu(this);
-    menu.addAction(cutAct);
-    menu.addAction(copyAct);
-    menu.addAction(pasteAct);
-    menu.exec(event->globalPos());
-}
-#endif // QT_NO_CONTEXTMENU
-//! [3]
-*/
 
 void MainWindow::updateLabel(States state) {
 
@@ -154,7 +144,6 @@ void MainWindow::updateLabel(States state) {
 
 }
 
-
 void MainWindow::newFile()
 {
     infoLabel->setText(tr("Invoked <b>File|New</b>"));
@@ -164,6 +153,21 @@ void MainWindow::open()
 {
     infoLabel->setText(tr("Invoked <b>File|Open</b>"));
 }
+
+/*
+//! [3]
+#ifndef QT_NO_CONTEXTMENU
+void MainWindow::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu menu(this);
+    menu.addAction(cutAct);
+    menu.addAction(copyAct);
+    menu.addAction(pasteAct);
+    menu.exec(event->globalPos());
+}
+#endif // QT_NO_CONTEXTMENU
+//! [3]
+*/
 
 /*void MainWindow::save()
 {

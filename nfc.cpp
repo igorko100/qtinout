@@ -5,6 +5,14 @@
 #include <QProcess>
 #include <QApplication>
 #include <QDateTime>
+#include <QMessageBox>
+#include <QPushButton>
+
+
+#include <QSqlQuery>
+#include <QVariant>
+#include <QDebug>
+#include <QSqlError>
 
 
 Controller::Controller() {
@@ -16,10 +24,26 @@ Controller::Controller() {
     connect(worker, &Worker::resultReady, this, &Controller::handleResults);
     workerThread.start();
 
-    prevState = 0;
-    emit operate(QByteArray("Testing operate"));
+    db = QSqlDatabase ();
+
+    openDB();
+
+    emit operate();
 }
 
+void Controller::openDB() {
+
+    db = QSqlDatabase::addDatabase("QPSQL", "work");
+    db.setHostName("10.10.11.201");
+    db.setDatabaseName("work");
+    db.setUserName("postgres");
+    db.setPassword("postgres123");
+    bool ok = db.open();
+
+//ToDo: handle opening error(s)
+
+    qDebug() << "Opening DB:" << ok << "  " <<  db.lastError().text();
+}
 
 void Controller::handleResults(const QByteArray &id) {
 
@@ -29,8 +53,45 @@ void Controller::handleResults(const QByteArray &id) {
     std::cerr << "Inserted card with UID:" << QString(id.toHex()).toLocal8Bit().constData() << std::endl;
     std::cerr << "... Writing to DB at " << ts.toLocal8Bit().data() << " ..." << std::endl;
 
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO inout(scid) VALUES(?::bytea) "
+                  "RETURNING status, "
+                            "(SELECT to_char(timestamp, 'DD-MM-YYYY HH24:MI:SS')), "
+                            "(SELECT scnr "
+                             "FROM people WHERE people.scid=inout.scid)");
+
+    query.bindValue(0, id);
+
+    query.exec();
+    qDebug() << "Query execution:" <<  query.lastError().text();
+
+//    while (query.next()) {
+    query.next();
+    QString status = query.value(0).toString();
+    QString timestampFromDB = query.value(1).toString();
+    int scnr = query.value(2).toString();
+    qDebug() << "status:" << status << "  timestampFromDB:" << timestampFromDB << "  scnr:" << scnr;
+//    }
+
+    if(scnr == 0) {
+
+        QMessageBox msgBox;
+        msgBox.setText("New tag is inserted. Select action:");
+        QPushButton *createNewUser = msgBox.addButton(tr("Create new user..."), QMessageBox::ActionRole);
+        createNewUser->setMinimumSize(96,24);
+        QPushButton *cancelButton = msgBox.addButton(QMessageBox::Cancel);
+        cancelButton->setMinimumSize(48,24);
+
+        int ret = msgBox.exec();
+
+        if(ret == QMessageBox::Cancel) {
+            emit operate();
+            return;
+        }
+    }
+
     QProcess process;
-    if (!prevState) {
+    if (status == "in") {
         emit updateText(States::WELCOME);
         QApplication::processEvents();
         process.start("aplay doorbell-shortened.wav");
@@ -40,19 +101,17 @@ void Controller::handleResults(const QByteArray &id) {
         QApplication::processEvents();
         process.start("aplay skibka-music-logo-pn22.wav");
     }
-    prevState = !prevState;
     process.waitForFinished(-1); // will wait forever until finished
     emit updateText(States::WAIT);
-    emit operate(QByteArray("Testing operate"));
+    emit operate();
 }
 
 
-void Worker::doWork(const QByteArray &parameter) {
+void Worker::doWork() {
 
     QByteArray result;
 
-
-    /* ... here is the expensive or blocking operation ... */
+    /* ... here we are reading NFC device in a separate thread ... */
 
     nfc_device *pnd;
     nfc_target nt;
