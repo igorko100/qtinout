@@ -7,6 +7,7 @@
 #include <QDateTime>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QLayout>
 
 
 #include <QSqlQuery>
@@ -63,7 +64,6 @@ void Controller::handleResults(const QByteArray &id) {
     query.bindValue(0, id);
 
     query.exec();
-    qDebug() << "Query execution:" <<  query.lastError().text();
 
 //    while (query.next()) {
     query.next();
@@ -78,15 +78,18 @@ void Controller::handleResults(const QByteArray &id) {
         QMessageBox msgBox;
         msgBox.setText("New tag is inserted. Select action:");
         QPushButton *createNewUser = msgBox.addButton(tr("Create new user..."), QMessageBox::ActionRole);
-        createNewUser->setMinimumSize(96,24);
+        createNewUser->setFixedSize(200,75);
         QPushButton *cancelButton = msgBox.addButton(QMessageBox::Cancel);
-        cancelButton->setMinimumSize(48,24);
+        cancelButton->setFixedSize(150,75);
 
         int ret = msgBox.exec();
 
         if(ret == QMessageBox::Cancel) {
             emit operate();
             return;
+        }
+        else { // Here we insert a new record to DB with scid and scnr taken from the admin
+
         }
     }
 
