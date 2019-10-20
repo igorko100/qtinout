@@ -88,13 +88,12 @@ void Controller::handleResults(const QByteArray &id) {
             emit operate();
             return;
         }
-        else { // Here we insert a new record to DB with scid and scnr taken from the admin
+        else {
 
             AddNewUserDialog dlg;
-            dlg.exec();
-
-
-
+            if (dlg.exec() == QDialog::Accepted) { // Here we insert a new record to DB with scid and scnr taken from the admin
+                qDebug()<<"Card number for DB:" <<dlg.getCardNumber();
+            }
         }
     }
 

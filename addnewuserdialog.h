@@ -17,6 +17,8 @@ public:
     explicit AddNewUserDialog(QWidget *parent = 0);
     ~AddNewUserDialog();
 
+    int getCardNumber();
+
 private:
     Ui::AddNewUserDialog *ui;
 

@@ -77,6 +77,9 @@ void AddNewUserDialog::backSpace() {
     }
 }
 
+int AddNewUserDialog::getCardNumber() {
+    return ui->cardNumberLineEdit->text().toInt();
+}
 
 void AddNewUserDialog::createNewUserClicked() {
     if(ui->passwordLineEdit->text() == pass) {
