@@ -58,6 +58,7 @@
 MainWindow::MainWindow()
 {
     QWidget *widget = new QWidget;
+
     setCentralWidget(widget);
 
     QWidget *topFiller = new QWidget;
@@ -96,6 +97,19 @@ MainWindow::MainWindow()
     layout->addWidget(logoLabel);
     widget->setLayout(layout);
 
+    //    widget->setStyleSheet("*{background-image: url(bg.jpg;}");
+//        widget->setStyleSheet("QMainWindow::centralwidget { background-color: rgb(0, 0, 0); }");
+    QPalette Pal(palette());
+
+    // устанавливаем цвет фона
+    Pal.setColor(QPalette::Background, Qt::gray);
+    widget->setAutoFillBackground(true);
+    widget->setPalette(Pal);
+    widget->show();
+
+/*
+#centralwidget { background-color: rgb(0, 0, 0); }
+*/
     createActions();
     createMenus();
 
