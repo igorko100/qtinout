@@ -61,6 +61,8 @@ void Controller::handleResults(const QByteArray &id) {
                             "(SELECT scnr "
                              "FROM people WHERE people.scid=inout.scid)");
 
+    qDebug() << "!!!!! HERE";
+
     query.bindValue(0, id);
 
     query.exec();
