@@ -73,6 +73,7 @@ void AddNewUserDialog::createNewUserClicked() {
     if(ui->passwordLineEdit->text() == pass)
         qDebug()<<"Create accepted!!!";
         emit accepted();
+        accept();
 }
 
 void AddNewUserDialog::digitClicked() {
