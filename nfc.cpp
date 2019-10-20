@@ -69,7 +69,7 @@ void Controller::handleResults(const QByteArray &id) {
     query.next();
     QString status = query.value(0).toString();
     QString timestampFromDB = query.value(1).toString();
-    int scnr = query.value(2).toString();
+    int scnr = query.value(2).toInt();
     qDebug() << "status:" << status << "  timestampFromDB:" << timestampFromDB << "  scnr:" << scnr;
 //    }
 
