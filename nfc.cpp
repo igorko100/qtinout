@@ -1,4 +1,3 @@
-#include "nfc.h"
 #include <iostream>
 #include <QByteArray>
 #include <QString>
@@ -9,12 +8,13 @@
 #include <QPushButton>
 #include <QLayout>
 
-
 #include <QSqlQuery>
 #include <QVariant>
 #include <QDebug>
 #include <QSqlError>
 
+#include "nfc.h"
+#include "addnewuserdialog.h"
 
 Controller::Controller() {
 
@@ -89,6 +89,11 @@ void Controller::handleResults(const QByteArray &id) {
             return;
         }
         else { // Here we insert a new record to DB with scid and scnr taken from the admin
+
+            AddNewUserDialog dlg;
+            dlg.exec();
+
+
 
         }
     }

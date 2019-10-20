@@ -5,6 +5,15 @@
 #include "addnewuserdialog.h"
 #include "ui_addnewuserdialog.h"
 
+/*
+When compiled on PC - there is a problem (when choosing LineEdit with focus...)
+*** stack smashing detected ***: <unknown> terminated
+The program has unexpectedly finished.
+
+It never shows up on Tinker board though.
+*/
+
+
 AddNewUserDialog::AddNewUserDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddNewUserDialog)

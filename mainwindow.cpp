@@ -114,9 +114,6 @@ MainWindow::MainWindow()
 
     qDebug() << QSqlDatabase::drivers();
 
-    AddNewUserDialog dlg;
-    dlg.exec();
-
 }
 //! [2]
 
