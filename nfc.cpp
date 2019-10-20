@@ -93,10 +93,9 @@ void Controller::handleResults(const QByteArray &id) {
             AddNewUserDialog dlg;
             if (dlg.exec() == QDialog::Accepted) { // Here we insert a new record to DB with scid and scnr taken from the admin
                 qDebug()<<"Card number for DB:" <<dlg.getCardNumber();
-                query.prepare("INSERT INTO people(scid, scnr, ""timestamp"") VALUES(?::bytea, ?)");
+                query.prepare("INSERT INTO people(scid, scnr) VALUES(?::bytea, ?)");
                 query.bindValue(0, id);
                 query.bindValue(1, dlg.getCardNumber());
-                query.bindValue(2, QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
                 query.exec();
             }
         }
