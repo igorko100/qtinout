@@ -73,7 +73,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton_11">
+  <widget class="QPushButton" name="createNewUserButton">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -289,7 +289,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton_12">
+  <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
      <x>400</x>

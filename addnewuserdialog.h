@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QLineEdit>
+#include <QString>
 
 namespace Ui {
 class AddNewUserDialog;
@@ -21,12 +22,15 @@ private:
 
     bool currentInput;
 
+    QString pass;
+
 
 protected:
     bool eventFilter(QObject *obj, QEvent *ev) override;
 
 private slots:
     void digitClicked();
+    void createNewUserClicked();
 
 };
 

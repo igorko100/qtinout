@@ -12,6 +12,7 @@ AddNewUserDialog::AddNewUserDialog(QWidget *parent) :
     ui->setupUi(this);
 
     currentInput = 0; // Input card number
+    pass = QString("12345678");
 
 //    currentInput = ui->cardNumberLineEdit;
 
@@ -26,6 +27,8 @@ AddNewUserDialog::AddNewUserDialog(QWidget *parent) :
     connect(ui->pushButton_9, SIGNAL(clicked()), this, SLOT(digitClicked()));
     connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(digitClicked()));
 
+    connect(ui->createNewUserButton, SIGNAL(clicked()), this, SLOT(createNewUserClicked()));
+    connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
 
     ui->cardNumberLineEdit->installEventFilter(this);
     ui->passwordLineEdit->installEventFilter(this);
@@ -42,24 +45,22 @@ bool AddNewUserDialog::eventFilter(QObject* object, QEvent* event)
 {
     if(object == ui->cardNumberLineEdit && event->type() == QEvent::FocusIn) {
         currentInput = 0;
-
-        qDebug()<<"in eventFilter  0!!!";
-
         return false; // lets the event continue to the edit
     }
 
     if(object == ui->passwordLineEdit && event->type() == QEvent::FocusIn) {
-                currentInput = 1;
-
-                qDebug()<<"in eventFilter  1!!!";
-
-
-                return false; // lets the event continue to the edit
-            }
+        currentInput = 1;
+        return false; // lets the event continue to the edit
+    }
 
     return false;
 }
 
+void AddNewUserDialog::createNewUserClicked() {
+    if(ui->passwordLineEdit->text() == pass)
+        qDebug()<<"Create accepted!!!";
+        emit accepted();
+}
 
 void AddNewUserDialog::digitClicked() {
     {
