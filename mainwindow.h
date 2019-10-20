@@ -113,28 +113,14 @@ private:
 
 //! [3]
     QMenu *fileMenu;
-//    QMenu *editMenu;
-//    QMenu *formatMenu;
+
     QMenu *helpMenu;
-//    QActionGroup *alignmentGroup;
-    QAction *newAct;
-    QAction *openAct;
-//    QAction *saveAct;
-//    QAction *printAct;
+
+    QAction *showLastActivity;
+    QAction *showLatestStatuses;
+
     QAction *exitAct;
-/*    QAction *undoAct;
-    QAction *redoAct;
-    QAction *cutAct;
-    QAction *copyAct;
-    QAction *pasteAct;
-    QAction *boldAct;
-    QAction *italicAct;
-    QAction *leftAlignAct;
-    QAction *rightAlignAct;
-    QAction *justifyAct;
-    QAction *centerAct;
-    QAction *setLineSpacingAct;
-    QAction *setParagraphSpacingAct; */
+
     QAction *aboutAct;
     QAction *aboutQtAct;
     QLabel *infoLabel;

@@ -59,15 +59,11 @@ void Controller::handleResults(const QByteArray &id) {
                   "RETURNING status, "
                             "(SELECT to_char(timestamp, 'DD-MM-YYYY HH24:MI:SS')), "
                             "(SELECT scnr "
-                             "FROM people WHERE people.scid=inout.scid)");
-
-    qDebug() << "!!!!! HERE";
-
+                            "FROM people WHERE people.scid=inout.scid)");
     query.bindValue(0, id);
-
     query.exec();
 
-    qDebug()<<query.lastError().text();
+//    qDebug()<<query.lastError().text();
 
 //    while (query.next()) {
     query.next();
@@ -93,7 +89,6 @@ void Controller::handleResults(const QByteArray &id) {
             return;
         }
         else {
-
             AddNewUserDialog dlg;
             if (dlg.exec() == QDialog::Accepted) { // Here we insert a new record to DB with scid and scnr taken from the admin
                 qDebug()<<"Card number for DB:" <<dlg.getCardNumber();
