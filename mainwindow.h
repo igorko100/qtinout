@@ -80,6 +80,7 @@ protected:
 
 public slots:
     void updateLabel(States state);
+    void showLastEventDialog();
 
 //! [1]
 private slots:
@@ -126,6 +127,8 @@ private:
     QLabel *infoLabel;
     QLabel *iconLabel;
     QLabel *logoLabel;
+
+    Controller *c;
 
     QPixmap icon;
 };

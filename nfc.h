@@ -45,14 +45,20 @@ public:
         workerThread.quit();
         workerThread.wait();
     }
+
+    QString lastPIB;
+    QString lastStatus;
+    QString lastTimestamp;
+
 private:
-    void openDB ();
+    void openDB();
 
 public slots:
     void handleResults(const QByteArray &);
 signals:
     void operate();
     void updateText(States state);
+
 };
 
 

@@ -54,6 +54,7 @@
 #include "nfc.h"
 #include "digitalclock.h"
 #include "addnewuserdialog.h"
+#include "showlasteventdialog.h"
 
 MainWindow::MainWindow()
 {
@@ -74,7 +75,7 @@ MainWindow::MainWindow()
     iconLabel->setAlignment(Qt::AlignCenter);
 
     logoLabel = new QLabel();
-    logoLabel->setAlignment(Qt::AlignRight);
+//    logoLabel->setAlignment(Qt::AlignRight);
     logoLabel->setFrameStyle(QFrame::NoFrame);
 
     updateLabel(States::WAIT);
@@ -87,7 +88,7 @@ MainWindow::MainWindow()
     clock->setFrameStyle(QFrame::NoFrame);
 
 
-    QVBoxLayout *layout = new QVBoxLayout;
+/*    QVBoxLayout *layout = new QVBoxLayout;
     layout->setContentsMargins(5, 5, 5, 5);
     layout->addWidget(clock, 0, Qt::AlignCenter);
     layout->addWidget(topFiller);
@@ -96,6 +97,23 @@ MainWindow::MainWindow()
     layout->addWidget(bottomFiller);
     layout->addWidget(logoLabel);
     widget->setLayout(layout);
+*/
+    QPushButton *showLastActivityButton = new QPushButton;
+    showLastActivityButton->setText("Show last event");
+    showLastActivityButton->setMinimumHeight(50);
+
+    QGridLayout *layout = new QGridLayout;
+    layout->setContentsMargins(5, 5, 5, 5);
+    layout->addWidget(clock, 0, 0, 1, 7, Qt::AlignCenter);
+    layout->addWidget(topFiller,1,0,1,7);
+    layout->addWidget(iconLabel,2,0,1,7);
+    layout->addWidget(infoLabel,3,0,1,7,Qt::AlignCenter);
+    layout->addWidget(bottomFiller,4,0,1,7);
+    layout->addWidget(logoLabel,5,0);
+    layout->addWidget(showLastActivityButton, 5, 6);
+    widget->setLayout(layout);
+
+    logoLabel->setPixmap(QPixmap("CNIua.png"));
 
     //    widget->setStyleSheet("*{background-image: url(bg.jpg;}");
 //        widget->setStyleSheet("QMainWindow::centralwidget { background-color: rgb(0, 0, 0); }");
@@ -116,12 +134,16 @@ MainWindow::MainWindow()
     setWindowTitle(tr("CNI inout"));
     setMinimumSize(160, 160);
     resize(480, 320);
-    Controller *c = new Controller;
+    c = new Controller;
     connect (c, &Controller::updateText, this, &MainWindow::updateLabel);
-
-    qDebug() << QSqlDatabase::drivers();
-
+    connect (showLastActivityButton, SIGNAL(clicked()), this, SLOT(showLastEventDialog()));
 }
+
+void MainWindow::showLastEventDialog() {
+    ShowLastEventDialog dlg(c->lastPIB,c->lastStatus,c->lastTimestamp);
+    dlg.exec();
+}
+
 
 
 void MainWindow::updateLabel(States state) {

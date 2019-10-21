@@ -26,9 +26,7 @@ Controller::Controller() {
     workerThread.start();
 
     db = QSqlDatabase ();
-
     openDB();
-
     emit operate();
 }
 
@@ -59,18 +57,25 @@ void Controller::handleResults(const QByteArray &id) {
                   "RETURNING status, "
                             "(SELECT to_char(timestamp, 'DD-MM-YYYY HH24:MI:SS')), "
                             "(SELECT scnr "
+                            "FROM people WHERE people.scid=inout.scid) "
+                            "(SELECT pib "
                             "FROM people WHERE people.scid=inout.scid)");
     query.bindValue(0, id);
     query.exec();
+//ToDo: hande query execution error
 
 //    qDebug()<<query.lastError().text();
 
 //    while (query.next()) {
     query.next();
     QString status = query.value(0).toString();
-    QString timestampFromDB = query.value(1).toString();
+
+    lastTimestamp = query.value(1).toString();
     int scnr = query.value(2).toInt();
-    qDebug() << "status:" << status << "  timestampFromDB:" << timestampFromDB << "  scnr:" << scnr;
+    lastPIB = query.value(3).toString();
+    lastStatus = status;
+
+    qDebug() << "status: " << status << "  timestampFromDB: " << lastTimestamp << "  scnr: " << scnr << "  PIB: " << lastPIB;
 //    }
 
     QProcess process;
