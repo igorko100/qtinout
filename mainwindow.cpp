@@ -84,7 +84,7 @@ MainWindow::MainWindow()
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     DigitalClock *clock = new DigitalClock();
-    clock->setFixedSize(450, 220);
+    clock->setFixedSize(450, 200);
     clock->setFrameStyle(QFrame::NoFrame);
 
 
