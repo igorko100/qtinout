@@ -174,6 +174,8 @@ label:
 //      std::cerr << "UID (NFCID):";
 //      std::cerr << QString(result.toHex()).toLocal8Bit().constData() << std::endl;
     }
+
+    emit resultReady(result);
     std::cerr << "Wait for target remove..." << std::endl;
     elt.start();
     while (0 == nfc_initiator_target_is_present(pnd, NULL)) {
@@ -181,7 +183,7 @@ label:
     // Here we try to exclude too close events
     if (elt.elapsed() > 250) {
 //        std::cerr << "elapsed time:" << elt.elapsed()<< std::endl;
-        emit resultReady(result);
+//        emit resultReady(result);
     } else {
         std::cerr << ">>>>> Duplicate events occured <<<<< waiting a second..." << std::endl;
         QThread::sleep(1); // Just wait for a second
