@@ -143,7 +143,7 @@ void Worker::doWork() {
     }
 
     // Display libnfc version
-    const char *acLibnfcVersion = nfc_version();
+//    const char *acLibnfcVersion = nfc_version();
 //    std::cerr << "Using libnfc" << acLibnfcVersion << std::endl;
 
     // Open, using the first available NFC device which can be in order of selection:

@@ -17,8 +17,10 @@ ShowLastEventDialog::ShowLastEventDialog(QString &pib, QString &status, QString 
     ui->timestampLabel->setText(timestamp);
 
 
-
-
+    if(status == "in")
+        ui->statusLabel->setText("is at work since: ");
+    else
+        ui->statusLabel->setText("went out at:");
 
     QTimer::singleShot(5000, this, SLOT(close()));
 
