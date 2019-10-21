@@ -84,7 +84,7 @@ MainWindow::MainWindow()
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     DigitalClock *clock = new DigitalClock();
-    clock->setFixedSize(450, 250);
+    clock->setFixedSize(450, 220);
     clock->setFrameStyle(QFrame::NoFrame);
 
 
@@ -141,6 +141,7 @@ MainWindow::MainWindow()
 
 void MainWindow::showLastEventDialog() {
     ShowLastEventDialog dlg(c->lastPIB,c->lastStatus,c->lastTimestamp);
+    dlg.showFullScreen();
     dlg.exec();
 }
 
