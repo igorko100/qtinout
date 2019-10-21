@@ -73,6 +73,9 @@ void Controller::handleResults(const QByteArray &id) {
     qDebug() << "status:" << status << "  timestampFromDB:" << timestampFromDB << "  scnr:" << scnr;
 //    }
 
+    QProcess process;
+    process.execute("xset -display :0 dpms force on"); // Wake up the screen
+
     if(scnr == 0) {
 
         QMessageBox msgBox;
@@ -99,8 +102,6 @@ void Controller::handleResults(const QByteArray &id) {
             }
         }
     }
-
-    QProcess process;
     if (status == "in") {
         emit updateText(States::WELCOME);
         QApplication::processEvents();
