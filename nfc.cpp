@@ -57,7 +57,7 @@ void Controller::handleResults(const QByteArray &id) {
                   "RETURNING status, "
                             "(SELECT to_char(timestamp, 'DD-MM-YYYY HH24:MI:SS')), "
                             "(SELECT scnr "
-                            "FROM people WHERE people.scid=inout.scid) "
+                            "FROM people WHERE people.scid=inout.scid), "
                             "(SELECT pib "
                             "FROM people WHERE people.scid=inout.scid)");
     query.bindValue(0, id);
