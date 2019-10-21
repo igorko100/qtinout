@@ -186,7 +186,7 @@ label:
 //        emit resultReady(result);
     } else {
         std::cerr << ">>>>> Duplicate events occured <<<<< waiting a second..." << std::endl;
-        QThread::sleep(1); // Just wait for a second
+        QThread::sleep(3); // Just wait for a second
         goto label; // ??? no better idea yet
     }
 
