@@ -11,7 +11,7 @@ ShowLastEventDialog::ShowLastEventDialog(QString &pib, QString &status, QString 
 
     this->setStyleSheet("background-color:white;");
 
-    if(pib <> "")
+    if(pib != "")
         ui->PibLabel->setText(pib);
     else
         ui->PibLabel->setText("No name found. Update the DB, please.");
