@@ -11,8 +11,10 @@ ShowLastEventDialog::ShowLastEventDialog(QString &pib, QString &status, QString 
 
     this->setStyleSheet("background-color:white;");
 
-
-    ui->PibLabel->setText(pib);
+    if(pib <> "")
+        ui->PibLabel->setText(pib);
+    else
+        ui->PibLabel->setText("No name found. Update the DB, please.");
 //    ui->timestampLabel->setText(timestamp);
 
     QString date = timestamp.mid(0, 10);
