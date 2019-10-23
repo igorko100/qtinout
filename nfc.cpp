@@ -33,7 +33,8 @@ Controller::Controller() {
 void Controller::openDB() {
 
     db = QSqlDatabase::addDatabase("QPSQL", "work");
-    db.setHostName("10.10.11.201");
+//    db.setHostName("10.10.11.201");
+    db.setHostName("10.42.0.87");
     db.setDatabaseName("work");
     db.setUserName("postgres");
     db.setPassword("postgres123");
