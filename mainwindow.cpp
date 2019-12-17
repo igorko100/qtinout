@@ -175,9 +175,10 @@ void MainWindow::updateLabel(States state) {
 
 }
 
-void MainWindow::newFile()
+void MainWindow::showLastEvent()
 {
 //    infoLabel->setText(tr("Invoked <b>File|New</b>"));
+    showLastEventDialog();
 }
 
 void MainWindow::open()
@@ -204,7 +205,7 @@ void MainWindow::createActions()
     showLastActivity = new QAction(tr("Show last &activity"), this);
     showLastActivity->setShortcuts(QKeySequence::New);
     showLastActivity->setStatusTip(tr("Show last activity"));
-    connect(showLastActivity, &QAction::triggered, this, &MainWindow::newFile);
+    connect(showLastActivity, &QAction::triggered, this, &MainWindow::showLastEvent);
 
     showLatestStatuses = new QAction(tr("&Show latest statuses"), this);
     showLatestStatuses->setShortcuts(QKeySequence::Open);

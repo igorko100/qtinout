@@ -84,7 +84,7 @@ public slots:
 
 //! [1]
 private slots:
-    void newFile();
+    void showLastEvent();
     void open();
 /*    void save();
     void print();
