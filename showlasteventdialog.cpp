@@ -21,11 +21,11 @@ ShowLastEventDialog::ShowLastEventDialog(QString &pib, QString &status, QString 
     QString time = timestamp.mid(10, -1);
 
     if(status == "in") {
-        ui->statusLabel->setText(QString("is at work since: ") + time + "       Date: " + date);
+        ui->statusLabel->setText(QString("на робочому місці з: ") + time + "       Дата: " + date);
         ui->labelForPixmap->setPixmap(QPixmap("at_work.png"));
     }
     else {
-        ui->statusLabel->setText(QString("went out at:") + time + "       Date: " + date);
+        ui->statusLabel->setText(QString("вийшов з роботи у:") + time + "       Дата: " + date);
         ui->labelForPixmap->setPixmap(QPixmap("at_home.png"));
     }
 
